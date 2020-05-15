@@ -1,0 +1,124 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #fafafa;
+}
+
+:root {
+    --bg-gray: #e9e9e9;
+    --gray-white: #a9aaaa;
+    --sidebar-bg-color: #3e4041;
+    --sidebar-bg-color-hover: #535556;
+    --etape-bg-color: #d4d4d4;
+    --etape-btn-color: #bebfbf;
+    --etape-btn-selected: #d4d4d4;
+    --etape-btn-hover: #ffffff;
+    --etape-tab-bg-color: #f1f2fa;
+    --etape-header-bg-color: #696a6b;
+}
+
+.bg-gray {
+    background-color: var(--bg-gray);
+}
+#liste-etape {
+    max-height: 50vh;
+    overflow-y: hidden;
+}
+#liste-etape:hover {
+    overflow-y: scroll;
+}
+
+#sidebar {
+    min-height: 100vh;
+    background-color: var(--sidebar-bg-color) !important;
+}
+
+.custom-btn {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: capitalize;
+    background-color: inherit;
+    font-weight: bold;
+    color: var(--gray-white);
+    text-align: left;
+    border-radius: 0;
+}
+
+.sidebar-btn:hover {
+    background-color: var(--sidebar-bg-color-hover) !important;
+    color: white !important;
+}
+
+.unstyled-link {
+    color: var(--gray-white);
+    text-decoration: none;
+}
+
+/* Etape sidebar */
+nav#etapes-sidbar {
+    min-height: 100vh;
+    background-color: var(--etape-bg-color);
+}
+
+#nav-header {
+    background-color: var(--etape-header-bg-color);
+    text-transform: capitalize;
+    letter-spacing: 5px;
+}
+
+.etape-btn {
+    font-weight: normal;
+    letter-spacing: 2px;
+    background: var(--etape-btn-color);
+}
+.etape-btn:hover, .etape-btn-selected:hover {
+    background-color: var(--etape-btn-hover);
+}
+.etape-btn-selected {
+    background-color: var(--etape-btn-selected);
+    font-weight: normal;
+    letter-spacing: 2px;
+    padding-left: 20%;
+}
+
+.label-box .label-box-key {
+    display: inline-block;
+    background-color: var(--etape-header-bg-color);
+    color: var(--bg-gray);
+    text-transform: capitalize;
+    border: 0;
+    border-radius: 0;
+    padding: 5px 10px;
+    margin-right: 0;
+}
+
+
+.label-box .label-box-value {
+    display: inline-block;
+    background-color: var(--etape-bg-color);
+    color: black;
+    border: 0;
+    border-radius: 0;
+    padding: 5px 10px;
+    margin-left: 0;
+}
+
+thead {
+    background-color: var(--etape-header-bg-color);
+    color: white;
+}
+.dark-blue-bg {
+    background-color: var(--etape-header-bg-color) !important;
+    color: black !important;
+}
+
+.light-blue-bg {
+    background-color: var(--etape-bg-color) !important;
+    color: black !important;
+}
+.light-blue-bg:hover {
+    background-color: var(--etape-btn-hover);
+}

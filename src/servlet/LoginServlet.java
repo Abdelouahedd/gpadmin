@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/pages/login.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -36,11 +36,11 @@ public class LoginServlet extends HttpServlet {
                 resp.sendRedirect("chef");
             } else if (userLog instanceof Employee) {
                 session.setAttribute("user", userLog);
-                resp.sendRedirect("chef");
+                resp.sendRedirect("employe");
             }
         } else {
             req.setAttribute("message", message);
-            this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, resp);
         }
     }
 }

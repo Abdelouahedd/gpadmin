@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
 
         // add catalogue to request paramters and forward to index.jsp
         req.setAttribute("catalogue", procs);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/home.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/pages/home.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

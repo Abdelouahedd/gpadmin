@@ -24,7 +24,7 @@ import java.io.*;
 //        maxFileSize = 1024 * 1024 * 100,      // 100MB
 //        maxRequestSize = 1024 * 1024 * 50)
 public class CreateDemande extends HttpServlet {
-    private final String path = "/home/ae/Desktop/docs/";
+    private final String path = "/tmp/";
     private GestionnaireDemande gestionnaireDemande = new GestionnaireDemande();
     private GestionnaireClient gestionnaireClient = new GestionnaireClient();
     private GestionnaireCatProc gestionnaireCatProc = new GestionnaireCatProc();
@@ -40,8 +40,8 @@ public class CreateDemande extends HttpServlet {
         Document document;
 
         if (req.getPart("file").getSize() > (1024 * 1024 * 100)) {
-            message = "La taille de fichier est long";
-            response(req, resp, message, "/error.jsp");
+            message = "La taille de fichier est longue";
+            showMessage(req, resp, "danger", message, "/pages/msg.jsp");
         } else {
             //recuperer les donnees du formulaire
             nom = req.getParameter("nom");
@@ -64,16 +64,17 @@ public class CreateDemande extends HttpServlet {
                 gestionnaireDocument.save(document);
                 //response
                 message = "Votre ID de cette demande est : \n" + jeton;
-                response(req, resp, message, "/succesResponse.jsp");
+                showMessage(req, resp, "success", message, "/pages/succesResponse.jsp");
             } else {
                 message = "Un erreur a etait generer lors de creation du demande ,essaie une autre fois";
-                response(req, resp, message, "/succesResponse.jsp");
+                showMessage(req, resp, "success", message, "/pages/succesResponse.jsp");
             }
         }
     }
 
-    private void response(HttpServletRequest req, HttpServletResponse resp, String message, String s) throws ServletException, IOException {
-        req.setAttribute("errorMessage", message);
+    private void showMessage(HttpServletRequest req, HttpServletResponse resp, String typeMessage, String message, String s) throws ServletException, IOException {
+        req.setAttribute("typeMessage", typeMessage);
+        req.setAttribute("msg", message);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(s);
         requestDispatcher.forward(req, resp);
     }

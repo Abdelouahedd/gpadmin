@@ -30,14 +30,14 @@ public class FollowDemande extends HttpServlet {
             req.setAttribute("demande", demande);
 
             // forward request
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/client.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/pages/client.jsp");
             requestDispatcher.forward(req, resp);
         } else {
             // forward to home page
             String errorMessage = "Desole, votre Demande n'existe pas";
             req.setAttribute("errorMessage", errorMessage);
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/error.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/pages/msg.jsp");
             requestDispatcher.forward(req, resp);
         }
     }
