@@ -40,7 +40,7 @@
     <div class="container-fluid bg-gray">
         <div class="row">
             <div id="sidebar" class="col-sm-2 sticy-left p-0">
-                <button id="profile-button" class="btn btn-block custom-btn sidebar-btn">
+                <button id="profile-button" class="btn btn-block">
                     <svg class="bi bi-person-plus mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -51,7 +51,7 @@
                     </svg>
                       Profile
                 </button>
-                <button id="etapes-button" class="btn btn-block custom-btn sidebar-btn">
+                <button id="etapes-button" class="btn btn-block">
                     <svg class="bi bi-folder-plus mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -65,7 +65,7 @@
                     </svg>
                      Gerer Etape
                 </button>
-                <button class="btn btn-block custom-btn sidebar-btn"><a class="unstyled-link" href="#">
+                <button class="btn btn-block"><a class="unstyled-link" href="#">
                         <svg class="bi bi-reply-all mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -79,7 +79,7 @@
                     </a></button>
             </div>
             <div class="col-sm-10">
-                <div class="container mt-5 py-0 bg-gray">
+                <div class="container mt-3 py-0 bg-gray">
 
                     <div id="profile-section" class="row">
                         <div class="col-sm-4">
@@ -108,19 +108,17 @@
                         </div>
 
                         <div class="offset-sm-1 col-sm-6 rounded">
-                            <div class="card shadow">
+                            <div class="card shadow border">
 
-                                <div class="card-header">
-
+                                <div class="card-header bg-gray text-primary text-center">
                                     <div>
-                                        <h1 class="text-center">Etape Affecte</h1>
-                                    </div>
-                                    <div>
+                                        <span class="badge badge-primary float-right">Total: 10</span>
                                         <p class="font-weight-bold">Le Catalogue des etapes qui vous sont affecte</p>
+                                        <p class="text-dark">(Basculez pour voir plus)</p>
                                     </div>
                                 </div>
-                                <div class="card-body bg-gray">
-                                    <ul id="liste-etape" class="list-group">
+                                <div class="card-body bg-transparent p-0">
+                                    <ul id="liste-etape" class="list-group bg-transparent m-0">
                                         <li class="list-group-item text-center bg-transparent">Etape_AB_001</li>
                                         <li class="list-group-item text-center bg-transparent">Etape_AB_002</li>
                                         <li class="list-group-item text-center bg-transparent">Etape_AB_003</li>
@@ -138,10 +136,27 @@
                     </div>
 
                     <div id="etapes-section" class="row m-0">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="card">
+                                            <div class="card-header bg-white">
+                                                <p class="text-dark"><span class="font-weight-bold text-primary">Hint:</span>
+                                                    Selectionnez une Etape puis une instance d'un client (Faites les modifications necessaire)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="row mt-3">
+
                         <!-- etape side bar -->
                         <div class="col-sm-3 m-0 p-0">
-                            <nav id="etapes-sidbar" class="nav flex-column m-0 p-0">
-                                <div id="nav-header" class="p-2 text-white">
+                            <nav id="etapes-sidbar" class="nav flex-column m-0 p-0 border shadow bg-white">
+                                <div id="nav-header" class="p-2 text-primary bg-gray">
                                     <h4>Ensemble des Etapes</h4>
                                 </div>
                                 <ul class="list-unstyled">
@@ -215,8 +230,6 @@
                                 </ul>
                             </nav>
                         </div>
-
-
                         <!-- etape content -->
                         <div class="col-sm-9 tab-content px-1 m-0 shadow bg-gray" id="tab-content">
                             <div id="first-tab" class="tab-pane fade show" role="tabpanel">
@@ -335,7 +348,12 @@
                                 <p>fourth tab</p>
                             </div>
                         </div>
+
+                        </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
