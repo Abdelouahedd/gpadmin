@@ -62,6 +62,10 @@ public class GestionnaireDemande {
                 collect(Collectors.toList());
     }
 
+    public Demande getByEtape(Integer id) {
+        DemandeEntity demandeEntity = daoDemande.getByEtape(id);
+        return construct(demandeEntity);
+    }
     /**
      * Construct Demande Object by adding composition relation
      * @param demandeEntity

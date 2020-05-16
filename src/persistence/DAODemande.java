@@ -1,5 +1,6 @@
 package persistence;
 
+import metier.beans.Demande;
 import metier.enumeration.EtatDemande;
 import persistence.entities.DemandeEntity;
 
@@ -132,6 +133,29 @@ public class DAODemande implements IDAO<DemandeEntity> {
                         result.getInt("ID_CLIENT")
                 ));
             return demandes;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public DemandeEntity getByEtape (Integer idEtape) {
+        try {
+            PreparedStatement ps = cnx.prepareStatement("SELECT DEMANDE.* FROM DEMANDE JOIN PROCESSUS ON DEMANDE.ID = PROCESSUS.ID_DEMANDE JOIN ETAPE ON ETAPE.ID_PROC = PROCESSUS.ID WHERE ETAPE.ID = ?;");
+            ps.setInt(1, idEtape);
+            ResultSet result = ps.executeQuery();
+            if ( result.next() ){
+                return new DemandeEntity(
+                        result.getInt("ID"),
+                        result.getTimestamp("DATE_OUVERTURE"),
+                        EtatDemande.valueOf(result.getString("ETAT")),
+                        result.getString("JETON"),
+                        result.getBoolean("ARCHIVE"),
+                        result.getInt("ID_CAT_PROC"),
+                        result.getInt("ID_CHEF"),
+                        result.getInt("ID_CLIENT")
+                );
+            }
         } catch (SQLException e){
             e.printStackTrace();
         }

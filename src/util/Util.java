@@ -1,7 +1,11 @@
 package util;
 
 
+import metier.beans.Etape;
+
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Util {
 
@@ -16,6 +20,12 @@ public class Util {
             jeton.append(rand.nextInt(10));
         }
         return jeton.toString();
+    }
+
+    public static List<Etape> filterByLibelle (List<Etape> list, String libelle) {
+        return list.stream()
+                .filter(item -> item.getLibelle().equals(libelle))
+                .collect(Collectors.toList());
     }
 
 }
