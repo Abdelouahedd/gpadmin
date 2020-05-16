@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set scope="session" var="employe" value="${sessionScope['user']}"/>
 <c:set var="catEtapes" value="${requestScope['catEtapes']}"/>
+
+<c:set var="etapesMap" value="${requestScope['etapesMap']}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -157,77 +159,28 @@
                                         <h4>Ensemble des Etapes</h4>
                                     </div>
                                     <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#first-collapse"
-                                               class="btn btn-block custom-btn etape-btn text-dark"
-                                               data-toggle="collapse">First
-                                                Etape <span class="badge badge-dark">3</span></a>
-                                            <nav id="first-collapse" class="nav nav-tabs flex-column collapse"
-                                                 data-toggle="collapse" role="tablist">
-                                                <a href="#first-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">First Tab</a>
-                                                <a href="#second-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Second Tab</a>
-                                                <a href="#third-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Third tab</a>
-                                            </nav>
-                                        </li>
-                                        <li>
-                                            <a href="#second-collapse"
-                                               class="btn btn-block custom-btn etape-btn text-dark"
-                                               data-toggle="collapse">Second Etape<span
-                                                    class="badge badge-dark">3</span></a>
-                                            <nav id="second-collapse" class="nav nav-tabs flex-column collapse"
-                                                 data-toggle="collapse" role="tablist">
-                                                <a href="#first-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">First Tab</a>
-                                                <a href="#second-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Second Tab</a>
-                                                <a href="#third-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Third tab</a>
-                                            </nav>
-                                        </li>
-                                        <li>
-                                            <a href="#third-collapse"
-                                               class="btn btn-block custom-btn etape-btn text-dark"
-                                               data-toggle="collapse">Third Etape<span
-                                                    class="badge badge-dark">3</span></a>
-                                            <nav id="third-collapse" class="nav nav-tabs flex-column collapse"
-                                                 data-toggle="collapse" role="tablist">
-                                                <a href="#first-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">First Tab</a>
-                                                <a href="#second-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Second Tab</a>
-                                                <a href="#third-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Third tab</a>
-                                            </nav>
-                                        </li>
-                                        <li>
-                                            <a href="#fourth-collapse"
-                                               class="btn btn-block custom-btn etape-btn text-dark"
-                                               data-toggle="collapse">Fourth Etape</a>
-                                            <nav id="fourth-collapse" class="nav nav-tabs flex-column collapse"
-                                                 data-toggle="collapse" role="tablist">
-                                                <a href="#first-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">First Tab</a>
-                                                <a href="#second-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Second Tab</a>
-                                                <a href="#third-tab"
-                                                   class="btn btn-block custom-btn etape-btn-selected nav-item nav-link text-dark"
-                                                   role="presentation" data-toggle="tab">Third tab</a>
-                                            </nav>
-                                        </li>
+                                        <c:forEach var="entry" items="${etapesMap}">
+                                            <li>
+                                                <a href="#${entry.key}"
+                                                   class="btn btn-block text-dark"
+                                                   data-toggle="collapse">
+                                                    <c:out value="${entry.key}" />
+                                                    <span class="badge badge-primary">
+                                                        <c:out value="${entry.value.size()}" />
+                                                    </span>
+                                                </a>
+                                                <nav id="${entry.key}" class="nav nav-tabs flex-column collapse"
+                                                     data-toggle="collapse" role="tablist">
+                                                    <c:forEach var="item" items="${entry.value}">
+                                                        <a href="#first-tab"
+                                                           class="btn btn-block nav-item nav-link text-dark"
+                                                           role="presentation" data-toggle="tab">
+                                                            <c:out value="${item.getId()}" />
+                                                        </a>
+                                                    </c:forEach>
+                                                </nav>
+                                            </li>
+                                        </c:forEach>
                                     </ul>
                                 </nav>
                             </div>

@@ -3,8 +3,10 @@ package util;
 
 import metier.beans.Etape;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Util {
@@ -22,9 +24,15 @@ public class Util {
         return jeton.toString();
     }
 
-    public static List<Etape> filterByLibelle (List<Etape> list, String libelle) {
+    public static Set<String> filterCatNames (List<Etape> etapes) {
+        return etapes.stream()
+                .map(Etape::getLibelle)
+                .collect(Collectors.toSet());
+    }
+
+    public static List<Etape> filterByLibelle (List<Etape> list, String name) {
         return list.stream()
-                .filter(item -> item.getLibelle().equals(libelle))
+                .filter(item -> item.getLibelle().equals(name))
                 .collect(Collectors.toList());
     }
 

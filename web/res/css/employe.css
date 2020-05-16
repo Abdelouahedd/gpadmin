@@ -6,16 +6,7 @@ body {
 }
 
 :root {
-    --bg-gray: #e9e9e9;
-    --gray-white: #a9aaaa;
-    --sidebar-bg-color: #3e4041;
-    --sidebar-bg-color-hover: #535556;
-    --etape-bg-color: #d4d4d4;
-    --etape-btn-color: #bebfbf;
-    --etape-btn-selected: #d4d4d4;
-    --etape-btn-hover: #ffffff;
-    --etape-tab-bg-color: #f1f2fa;
-    --etape-header-bg-color: #696a6b;
+
 
     --color-primary: #009688;
     --color-primary-dark: #00796B;
@@ -87,8 +78,19 @@ body {
 /*========================= etape sidebar ============================*/
 
 #etapes-sidbar {
-    min-height: 100vh;
+    min-height: 60vh;
+    max-height: 100vh;
     background-color: var(--color-primary);
+}
+
+#etapes-sidbar ul {
+    max-height: 60vh !important;
+    overflow-y: scroll;
+
+}
+#etapes-sidbar ul:hover {
+    overflow-y: scroll;
+    max-height: 60vh;
 }
 
 #etapes-sidbar a {
@@ -99,7 +101,11 @@ body {
     padding-bottom: 10px;
 }
 #etapes-sidbar a:hover {
-    background-color: var(--color-divider);
+    background-color: var(--color-primary-dark);
+}
+
+#etape-sidebar nav a:hover {
+    background-color: var(--color-primary-dark);
 }
 /*=====================================================================*/
 li:hover {
