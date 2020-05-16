@@ -1,6 +1,7 @@
 package metier.gestionnaire;
 
 import metier.beans.CatalogueEtape;
+import metier.beans.Employee;
 import persistence.DAOCatalogueEtape;
 
 import java.util.ArrayList;
@@ -46,5 +47,12 @@ public class GestionnaireCatEtap {
         //sort list by numOrder
         catalogueEtapes.sort((Comparator.comparing(catalogueEtape -> catalogueEtape.getCatalogueEtapeEntity().getNumOrdre())));
         return catalogueEtapes;
+    }
+
+    public List<CatalogueEtape> getCatEtapeByEMP(Employee employee) {
+        return daoCatalogueEtape.getByEMP(employee.getUser().getId())
+                .stream()
+                .map(CatalogueEtape::new)
+                .collect(Collectors.toList());
     }
 }

@@ -1,9 +1,6 @@
 package metier.gestionnaire;
 
-import metier.beans.Admin;
-import metier.beans.ChefDivision;
-import metier.beans.Employee;
-import metier.beans.User;
+import metier.beans.*;
 import persistence.DAOPersonnel;
 import persistence.entities.PersonnelEntity;
 
@@ -15,11 +12,13 @@ public class GestionnaireUser {
     private DAOPersonnel personnel;
     private GestionnaireDemande gestionnaireDemande;
     private GestionnaireEtape gestionnaireEtape;
+    private GestionnaireCatEtap gestionnaireCatEtap;
 
     public GestionnaireUser() {
         this.personnel = new DAOPersonnel();
         this.gestionnaireDemande = new GestionnaireDemande();
         this.gestionnaireEtape = new GestionnaireEtape();
+        this.gestionnaireCatEtap = new GestionnaireCatEtap();
     }
 
     public int saveUser(User user) {
@@ -89,5 +88,9 @@ public class GestionnaireUser {
         List<Employee> employees = new ArrayList<>();
         personnel.getAllChef().stream().map(this::mapUser).forEach(emp -> employees.add((Employee) emp));
         return employees;
+    }
+
+    public List<CatalogueEtape> getAll(Employee employee) {
+        return gestionnaireCatEtap.getCatEtapeByEMP(employee);
     }
 }

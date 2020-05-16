@@ -18,5 +18,9 @@ public class CatalogueEtape {
         this.catalogueEtapeEntity = catalogueEtapeEntity;
     }
 
+    public String getLibelle() {
+        return this.catalogueEtapeEntity.getLibelle();
+    }
+
 
 }

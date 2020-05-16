@@ -125,4 +125,25 @@ public class DAOCatalogueEtape implements IDAO<CatalogueEtapeEntity> {
         }
         return null;
     }
+
+    public List<CatalogueEtapeEntity> getByEMP(Integer idEmploye) {
+        List<CatalogueEtapeEntity> catalogueEtapeEntities = new ArrayList<>(10);
+        try {
+            PreparedStatement ps = cnx.prepareStatement("SELECT * FROM CATALOGUE_ETAPE WHERE EMP_DEFAUT = ?");
+            ps.setInt(1, idEmploye);
+            ResultSet result = ps.executeQuery();
+            while ( result.next() )
+                catalogueEtapeEntities.add(new CatalogueEtapeEntity(
+                        result.getInt("ID"),
+                        result.getString("LIBELLE"),
+                        result.getInt("NUM_ORDRE"),
+                        result.getInt("EMP_DEFAUT"),
+                        result.getInt("ID_PROC")
+                ));
+            return catalogueEtapeEntities;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

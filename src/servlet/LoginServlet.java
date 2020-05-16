@@ -32,10 +32,10 @@ public class LoginServlet extends HttpServlet {
             User userLog = user.getByCin(cin);
             System.out.println(userLog.getUser().toString());
             if (userLog instanceof ChefDivision) {
-                session.setAttribute("user", userLog);
+                session.setAttribute("user", (ChefDivision) userLog);
                 resp.sendRedirect("chef");
             } else if (userLog instanceof Employee) {
-                session.setAttribute("user", userLog);
+                session.setAttribute("user", (Employee) userLog);
                 resp.sendRedirect("employe");
             }
         } else {

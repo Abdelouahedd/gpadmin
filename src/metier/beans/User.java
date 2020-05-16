@@ -3,8 +3,6 @@ package metier.beans;
 
 import persistence.entities.PersonnelEntity;
 
-import javax.swing.*;
-
 abstract public class User {
     private PersonnelEntity user;
 
@@ -23,10 +21,19 @@ abstract public class User {
         this.user = user;
     }
 
-    public JComboBox<String> getFullName() {
+    public String getFullName() {
         String fulName = String.format("%s %s", user.getNom(), user.getPrenom());
-        JComboBox<String> box = new JComboBox<>();
-        box.addItem(fulName);
-        return box;
+        return fulName;
+    }
+
+    public String getNom() {
+        return this.user.getNom();
+    }
+
+    public String getPrenom() {
+        return this.user.getPrenom();
+    }
+    public String getCin(){
+        return this.user.getCin();
     }
 }

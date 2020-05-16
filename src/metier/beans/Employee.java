@@ -18,4 +18,5 @@ public class Employee extends User {
     public void setEtapes(List<Etape> etapes) {
         this.etapes = etapes;
     }
+
 }
