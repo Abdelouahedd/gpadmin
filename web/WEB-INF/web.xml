@@ -66,6 +66,15 @@
         <servlet-name>ChefServlet</servlet-name>
         <url-pattern>/chef</url-pattern>
     </servlet-mapping>
+    <!--API-->
+    <servlet>
+        <servlet-name>ApiEtape</servlet-name>
+        <servlet-class>servlet.api.ApiEtape</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApiEtape</servlet-name>
+        <url-pattern>/api/etape/*</url-pattern>
+    </servlet-mapping>
     <!--  Filter  -->
     <filter>
         <filter-name>SessionInterceptor</filter-name>
@@ -79,4 +88,8 @@
         <filter-name>SessionInterceptor</filter-name>
         <url-pattern>/chef</url-pattern>
     </filter-mapping>
+<!--    <filter-mapping>-->
+<!--        <filter-name>SessionInterceptor</filter-name>-->
+<!--        <url-pattern>/api/etape</url-pattern>-->
+<!--    </filter-mapping>-->
 </web-app>
