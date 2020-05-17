@@ -223,17 +223,41 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <form action="UpdateEtat" class="d-flex justify-content-between">
-                                                        <input type="submit" name="valider"
-                                                               class="btn btn-outline-success"
-                                                               value="Valider">
-                                                        <input type="submit" name="refuser"
-                                                               class="btn btn-outline-warning"
-                                                               value="refuser">
-                                                        <input type="submit" name="rejeter"
-                                                               class="btn btn-outline-danger"
-                                                               value="rejeter">
-                                                    </form>
+                                                    <div class="d-flex justify-content-around">
+                                                        <button id="validate" class="btn btn-outline-success"
+                                                               data-toggle="modal" data-target="#change-state">Valider</button>
+                                                        <button id="refuse" class="btn btn-outline-warning"
+                                                                data-toggle="modal" data-target="#change-state">Refuser</button>
+                                                        <button id="reject" class="btn btn-outline-danger"
+                                                                data-toggle="modal" data-target="#change-state">Rejeter</button>
+                                                    </div>
+
+
+                                                    <div id="change-state" class="modal fade" tabindex="-1" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Un Rapport</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method="post">
+                                                                        <p class="text-primary font-weight-bold">Justifier votre decision
+                                                                            par un rappot</p>
+                                                                        <label class="text-primary">
+                                                                            <input type="file"
+                                                                                   class="input-control-file"
+                                                                                   name="files" multiple required>
+                                                                        </label>
+                                                                        <input class="none" type="text" name="id">
+                                                                        <input type="submit" class="btn btn-primary d-block mx-auto" value="Justifier">
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <h4 class="text-left font-weight-bold">Rapports</h4>

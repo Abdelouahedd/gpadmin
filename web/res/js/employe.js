@@ -4,11 +4,27 @@ function updateUI (data) {
     $("#etape_name").text(data["etapeNom"])
     $("#etape_etat").text(data["etapeEtat"])
     $("#etape_id").text(data["etapeId"])
+    $("input#id").attr('value', data['etapeId'])
     $("#etape_ouverture").text(data["etapeOuverture"])
     $("#etape_fermeture").text(data["etapeFermeture"])
     $('#rapports').empty()
     $("#docs").empty()
 
+    switch (data['etapeEtat']) {
+        case 'TERMINE':
+            $('#validate').hide()
+            $('#refuse').hide()
+            $('#reject').hide()
+            break;
+        case 'REJETE':
+            $('#reject').hide()
+            break;
+        case 'REFUSE':
+            $('#refuse').hide()
+            break;
+        default:
+            console.log("Pay me")
+    }
     if ( data['rapports'].length > 0 ) {
         for (let id in data['rapports'] ) {
             const rapport = data['rapports'][id]['rapportEntity']
