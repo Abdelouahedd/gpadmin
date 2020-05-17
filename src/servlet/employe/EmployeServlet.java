@@ -1,8 +1,10 @@
 package servlet.employe;
 
 import metier.beans.CatalogueEtape;
+import metier.beans.Demande;
 import metier.beans.Employee;
 import metier.gestionnaire.GestionnaireCatEtap;
+import metier.gestionnaire.GestionnaireDemande;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +22,8 @@ public class EmployeServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Employee employee = (Employee) session.getAttribute("user");
         List<CatalogueEtape> catalogueEtapes = gestionnaireCatEtap.getCatEtapeByEMP(employee);
+
+
 
         req.setAttribute("catEtapes", catalogueEtapes);
         this.getServletContext().getRequestDispatcher("/pages/employe.jsp").forward(req, resp);
