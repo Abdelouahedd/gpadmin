@@ -8,6 +8,7 @@ import metier.gestionnaire.GestionnaireUser;
 import util.Util;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Main {
 
@@ -33,14 +34,11 @@ public class Main {
 //
 //        System.out.println("Avancement: " + proc.getAvancementRatio());
 
-        GestionnaireUser gestionnaireUser = new GestionnaireUser();
-        Employee employee = (Employee) gestionnaireUser.getByCin("QA3997");
-        List<Etape> etapes = employee.getEtapes();
-
-        List<Etape> filtered = Util.filterByLibelle(etapes, "ETAPE_MIAD");
-        if ( filtered.size() != 0 )
-            filtered.forEach(System.out::println);
-        else
-            System.out.println("Empty result");
+        GestionnaireDemande gestionnaireDemande = new GestionnaireDemande();
+        Demande demande = gestionnaireDemande.getByEtape(1045);
+        Optional<Etape> etape = demande.getProcessus().getEtapes().stream().
+                filter(e -> e.getId().equals(1045)).
+                findFirst();
+        System.out.println("Hello world'");
     }
 }

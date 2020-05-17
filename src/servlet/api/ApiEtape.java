@@ -5,6 +5,7 @@ import metier.beans.Demande;
 import metier.beans.Etape;
 import metier.beans.Rapport;
 import metier.gestionnaire.GestionnaireDemande;
+import metier.gestionnaire.GestionnaireEtape;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 public class ApiEtape extends HttpServlet {
     private GestionnaireDemande gestionnaireDemande = new GestionnaireDemande();
+    private GestionnaireEtape gestionnaireEtape = new GestionnaireEtape();
     private Integer idEtape;
     private Demande demande;
     private EtapeModel etapeModel;
@@ -29,17 +31,15 @@ public class ApiEtape extends HttpServlet {
         try {
             getIdParameter(req);
             demande = gestionnaireDemande.getByEtape(idEtape);
-            Optional<Etape> etape = demande.getProcessus().getEtapes().stream().
-                    filter(e -> e.getId().equals(idEtape)).
-                    findFirst();
-            List<Rapport> rapportList = etape.get().getRapports().values().stream().collect(Collectors.toList());
+            Etape etape = gestionnaireEtape.getById(idEtape);
+            List<Rapport> rapportList = etape.getRapports().values().stream().collect(Collectors.toList());
             etapeModel = new EtapeModel();
-            etapeModel.setEtapeId(etape.get().getId());
-            etapeModel.setEtapeNom(demande.getLibelle());
+            etapeModel.setEtapeId(etape.getId());
+            etapeModel.setEtapeNom(etape.getLibelle());
             etapeModel.setProcedureNom(demande.getLibelle());
-            etapeModel.setEtapeEtat(etape.get().getEtat().toString());
-            etapeModel.setEtapeOuverture(etape.get().getDateDebut().toString());
-            etapeModel.setEtapeFermeture(etape.get().getDateFin().toString());
+            etapeModel.setEtapeEtat(etape.getEtat().toString());
+            etapeModel.setEtapeOuverture(etape.getDateDebut().toString());
+            etapeModel.setEtapeFermeture(etape.getDateFin().toString());
             etapeModel.setDocuments(demande.getDocs());
             etapeModel.setRapports(rapportList);
             String json = new Gson().toJson(etapeModel);

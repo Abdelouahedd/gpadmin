@@ -60,16 +60,6 @@ function updateUI (data) {
         $("#etape-content").show()
     }
 
-// <li class="list-group-item">
-//         <div>
-//         <span class="font-weight-bold">Doc:
-// </span><span>Doc_01.pdf</span>
-//     </div>
-//     <div>
-//     <span class="font-weight-bold">Depo:</span><span>2020-10-01
-//     00:00</span>
-//     </div>
-//     </li>
 }
 
 profileSection = $("#profile-section")
@@ -98,61 +88,16 @@ etapesButton.on('click', function (event) {
 $('#etapes-sidbar nav a').on('click', function (event) {
     const idEtape = $(this).attr('id');
     $("#connection").show();
-
-    let response = null;
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("demo").innerHTML = xhttp.responseText;
-            response = JSON.parse(xhttp.response);
-            updateUI(response)
-            etapeContent.show();
-            $("#connection").hide()
-            $("#error").hide()
-        } else {
-            console.error("Error getting data");
-            $("#connection").hide()
+    $("#error").hide()
+    fetch("http://localhost:8080/web_war_exploded/api/etape/" + idEtape)
+        .then(response => response.json() )
+        .then(data => {
+            updateUI(data)
+            $('#connection').hide()
+        })
+        .catch(error => {
+            $('#connection').hide()
             $('#error').show()
-            const test = {
-                "etapeId": 1204,
-                "procedureNom": "PROC_AA",
-                "etapeNom": "PROC_AA",
-                "etapeEtat": "COURS",
-                "etapeOuverture": "2005-07-03 01:00:15.0",
-                "etapeFermeture": "2001-03-12 12:11:12.0",
-                "rapports": [
-                    {
-                        "rapportEntity": {
-                            "id": 4,
-                            "filename": "Rapport_263.pdf",
-                            "decision": "REFUSE",
-                            "dateDeposition": "Jul 28, 2004, 3:51:18 AM",
-                            "idEtape": 263
-                        }
-                    }
-                ],
-                "documents": [
-                    {
-                        "documentEntity": {
-                            "id": 1,
-                            "filename": "Doc_120438871.pdf",
-                            "dateDeposition": "Dec 28, 2000, 9:34:18 PM",
-                            "idDemande": 1204
-                        }
-                    },
-                    {
-                        "documentEntity": {
-                            "id": 2,
-                            "filename": "Doc_120438872.pdf",
-                            "dateDeposition": "Jan 26, 2004, 8:52:46 PM",
-                            "idDemande": 1204
-                        }
-                    }
-                ]
-            }
-            updateUI(test)
-        }
-    };
-    xhttp.open("GET", "http://localhost/api/etapes/23", false);
-    xhttp.send();
+            $("#etape-content").hide()
+        })
 })
