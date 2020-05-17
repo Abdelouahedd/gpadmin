@@ -144,12 +144,14 @@
                                                 Selectionnez une Etape puis une instance d'un client (Faites les
                                                 modifications necessaire)
                                             </p>
+                                            <p class="text-primary" id="connection">Connecting .....</p>
+                                            <p class="text-danger" id="error">Error Getting Data !!!</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                    </div>
                         <div class="row mt-3">
 
                             <!-- etape side bar -->
@@ -169,13 +171,13 @@
                                                         <c:out value="${entry.value.size()}" />
                                                     </span>
                                                 </a>
-                                                <nav id="${entry.key}" class="nav nav-tabs flex-column collapse"
+                                                <nav id="${entry.key}" class="nav flex-column collapse"
                                                      data-toggle="collapse" role="tablist">
                                                     <c:forEach var="item" items="${entry.value}">
-                                                        <a href="#first-tab"
-                                                           class="btn btn-block nav-item nav-link text-dark"
-                                                           role="presentation" data-toggle="tab">
-                                                            <c:out value="${item.getId()}" />
+                                                        <a id="<c:out value='${item.getId()}' /> "
+                                                           class="btn btn-block nav-item nav-link text-dark">
+                                                            Etape numero:  <b><c:out value="${item.getId()}" /></b>
+
                                                         </a>
                                                     </c:forEach>
                                                 </nav>
@@ -184,17 +186,18 @@
                                     </ul>
                                 </nav>
                             </div>
+
+                            <!-- hint -->
+
                             <!-- etape content -->
-                            <div class="col-sm-9 tab-content px-1 m-0 shadow bg-gray" id="tab-content">
-                                <div id="first-tab" class="tab-pane fade show" role="tabpanel">
+                            <div class="col-sm-9 px-1 m-0 shadow bg-gray" id="etape-content">
+                                <div class="fade show">
                                     <div class="row my-4">
                                         <div class="offset-md-1 col-md-5 label-box">
-                                            <span class="font-weight-bold label-box-key">Procedure:</span><span
-                                                class="label-box-value">Nom Procedure</span>
+                                            <span class="font-weight-bold label-box-key">Procedure:</span><span id="proc_name" class="label-box-value"></span>
                                         </div>
                                         <div class="offset-md-1 col-md-3 label-box">
-                                            <span class="font-weight-bold label-box-key">Etape: </span><span
-                                                class="label-box-value">Nom Etape</span>
+                                            <span class="font-weight-bold label-box-key">Etape: </span><span id="etape_name" class="label-box-value"></span>
                                         </div>
                                     </div>
 
@@ -204,16 +207,20 @@
                                                 <div class="card-header d-flex flex-column">
                                                     <div class="d-flex justify-content-around">
                                                         <span class="text-right font-weight-bold">Etape ID:</span>
-                                                        <span class="text-left">!@#@#@</span></div>
+                                                        <span id="etape_id" class="text-left"></span>
+                                                    </div>
                                                     <div class="d-flex justify-content-around">
                                                         <span class="text-right font-weight-bold">Etat: </span>
-                                                        <span class="text-left">Attente</span></div>
+                                                        <span id="etape_etat" class="text-left"></span>
+                                                    </div>
                                                     <div class="d-flex justify-content-around">
                                                         <span class="text-right font-weight-bold">Ouverture</span>
-                                                        <span class="text-left">2020-10-20 20:20</span></div>
+                                                        <span id="etape_ouverture" class="text-left"></span>
+                                                    </div>
                                                     <div class="d-flex justify-content-around">
                                                         <span class="text-right font-weight-bold">Fermeture</span>
-                                                        <span class="text-left">2020-10-20 20:20</span></div>
+                                                        <span id="etape_fermeture" class="text-left"></span>
+                                                    </div>
                                                 </div>
                                                 <div class="card-body">
                                                     <form action="UpdateEtat" class="d-flex justify-content-between">
@@ -231,28 +238,8 @@
                                                 <div class="card-footer">
                                                     <h4 class="text-left font-weight-bold">Rapports</h4>
                                                     <div class="d-flex flex-column">
-                                                        <ul class="list-group unstyled-list">
-                                                            <li class="list-group-item">
-                                                                <div><span class="font-weight-bold">Doc:
-                                                                </span><span>Doc_01.pdf</span></div>
-                                                                <div></div>
-                                                                <span class="font-weight-bold">Depo:</span><span>2020-10-01
-                                                                00:00</span>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <div><span class="font-weight-bold">Doc:
-                                                                </span><span>Doc_02.pdf</span></div>
-                                                                <div></div>
-                                                                <span class="font-weight-bold">Depo:</span><span>2020-10-02
-                                                                00:00</span>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <div><span class="font-weight-bold">Doc:
-                                                                </span><span>Doc_03.pdf</span></div>
-                                                                <div></div>
-                                                                <span class="font-weight-bold">Depo:</span><span>2020-10-03
-                                                                00:00</span>
-                                                            </li>
+                                                        <ul id="rapports" class="list-group unstyled-list">
+                                                            <!-- Filled with jquery -->
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -265,7 +252,7 @@
                                                     <th>Documents</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="docs">
                                                 <tr>
                                                     <td class="text-center">doc_01.pdf</td>
                                                 </tr>
@@ -306,9 +293,8 @@
                                 </div>
                             </div>
 
-                        </div>
                     </div>
-
+                    </div>
                 </div>
 
             </div>
