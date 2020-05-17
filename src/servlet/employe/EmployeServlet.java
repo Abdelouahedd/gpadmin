@@ -5,11 +5,7 @@ import metier.beans.Demande;
 import metier.beans.Employee;
 import metier.beans.Etape;
 import metier.gestionnaire.GestionnaireCatEtap;
-<<<<<<< HEAD
 import util.Util;
-=======
-import metier.gestionnaire.GestionnaireDemande;
->>>>>>> test
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
