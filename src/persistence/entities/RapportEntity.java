@@ -8,16 +8,24 @@ public class RapportEntity {
     private Integer id;
     private String filename;
     private EtatEtape decision;
-    private Timestamp  dateDeposition;
+    private Timestamp dateDeposition;
     private Integer idEtape;
 
-    public RapportEntity() {}
+    public RapportEntity() {
+    }
 
     public RapportEntity(Integer id, String filename, EtatEtape decision, Timestamp dateDeposition, Integer idEtape) {
         this.id = id;
         this.filename = filename;
         this.decision = decision;
         this.dateDeposition = dateDeposition;
+        this.idEtape = idEtape;
+    }
+
+    public RapportEntity(String filename, EtatEtape decision, Integer idEtape) {
+        this.filename = filename;
+        this.decision = decision;
+        this.dateDeposition = new Timestamp(System.currentTimeMillis());
         this.idEtape = idEtape;
     }
 

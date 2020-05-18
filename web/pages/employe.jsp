@@ -2,7 +2,7 @@
 <c:set scope="session" var="employe" value="${sessionScope['user']}"/>
 <c:set var="catEtapes" value="${requestScope['catEtapes']}"/>
 
-<c:set var="etapesMap" value="${requestScope['etapesMap']}" />
+<c:set var="etapesMap" value="${requestScope['etapesMap']}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,7 +116,8 @@
 
                             <div class="card-header bg-gray text-primary text-center">
                                 <div>
-                                    <span class="badge badge-primary float-right">Total: <c:out value="${catEtapes.size()}"/></span>
+                                    <span class="badge badge-primary float-right">Total: <c:out
+                                            value="${catEtapes.size()}"/></span>
                                     <p class="font-weight-bold">Le Catalogue des etapes qui vous sont affecte</p>
                                     <p class="text-dark">(Basculez pour voir plus)</p>
                                 </div>
@@ -124,7 +125,8 @@
                             <div class="card-body bg-transparent p-0">
                                 <ul id="liste-etape" class="list-group bg-transparent m-0">
                                     <c:forEach items="${catEtapes}" var="catEtape">
-                                    <li class="list-group-item text-center bg-transparent"><c:out value="${catEtape.getLibelle()}"/></li>
+                                        <li class="list-group-item text-center bg-transparent"><c:out
+                                                value="${catEtape.getLibelle()}"/></li>
                                     </c:forEach>
                                 </ul>
                             </div>
@@ -151,7 +153,7 @@
                                 </div>
                             </div>
 
-                    </div>
+                        </div>
                         <div class="row mt-3">
 
                             <!-- etape side bar -->
@@ -166,9 +168,9 @@
                                                 <a href="#${entry.key}"
                                                    class="btn btn-block text-dark"
                                                    data-toggle="collapse">
-                                                    <c:out value="${entry.key}" />
+                                                    <c:out value="${entry.key}"/>
                                                     <span class="badge badge-primary">
-                                                        <c:out value="${entry.value.size()}" />
+                                                        <c:out value="${entry.value.size()}"/>
                                                     </span>
                                                 </a>
                                                 <nav id="${entry.key}" class="nav flex-column collapse"
@@ -176,7 +178,7 @@
                                                     <c:forEach var="item" items="${entry.value}">
                                                         <a id="<c:out value='${item.getId()}' /> "
                                                            class="btn btn-block nav-item nav-link text-dark">
-                                                            Etape numero:  <b><c:out value="${item.getId()}" /></b>
+                                                            Etape numero: <b><c:out value="${item.getId()}"/></b>
 
                                                         </a>
                                                     </c:forEach>
@@ -194,10 +196,12 @@
                                 <div class="fade show">
                                     <div class="row my-4">
                                         <div class="offset-md-1 col-md-5 label-box">
-                                            <span class="font-weight-bold label-box-key">Procedure:</span><span id="proc_name" class="label-box-value"></span>
+                                            <span class="font-weight-bold label-box-key">Procedure:</span><span
+                                                id="proc_name" class="label-box-value"></span>
                                         </div>
                                         <div class="offset-md-1 col-md-3 label-box">
-                                            <span class="font-weight-bold label-box-key">Etape: </span><span id="etape_name" class="label-box-value"></span>
+                                            <span class="font-weight-bold label-box-key">Etape: </span><span
+                                                id="etape_name" class="label-box-value"></span>
                                         </div>
                                     </div>
 
@@ -225,34 +229,44 @@
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-around">
                                                         <button id="validate" class="btn btn-outline-success"
-                                                               data-toggle="modal" data-target="#change-state">Valider</button>
+                                                                data-toggle="modal" data-target="#change-state">Valider
+                                                        </button>
                                                         <button id="refuse" class="btn btn-outline-warning"
-                                                                data-toggle="modal" data-target="#change-state">Refuser</button>
+                                                                data-toggle="modal" data-target="#change-state">Refuser
+                                                        </button>
                                                         <button id="reject" class="btn btn-outline-danger"
-                                                                data-toggle="modal" data-target="#change-state">Rejeter</button>
+                                                                data-toggle="modal" data-target="#change-state">Rejeter
+                                                        </button>
                                                     </div>
 
 
-                                                    <div id="change-state" class="modal fade" tabindex="-1" role="dialog">
+                                                    <div id="change-state" class="modal fade" tabindex="-1"
+                                                         role="dialog">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title">Un Rapport</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="" method="post">
-                                                                        <p class="text-primary font-weight-bold">Justifier votre decision
+                                                                    <form action="JustifierRapport" method="post" encType="multipart/form-data">
+                                                                        <p class="text-primary font-weight-bold">
+                                                                            Justifier votre decision
                                                                             par un rappot</p>
                                                                         <label class="text-primary">
                                                                             <input type="file"
                                                                                    class="input-control-file"
-                                                                                   name="files" multiple required>
+                                                                                   name="files" id="filess" multiple required>
                                                                         </label>
-                                                                        <input class="none" type="text" name="id">
-                                                                        <input type="submit" class="btn btn-primary d-block mx-auto" value="Justifier">
+                                                                        <input class="none" type="text" name="id" id="idEtape">
+                                                                        <input id="decision" name="decision"
+                                                                               class="none" >
+                                                                        <input type="submit"
+                                                                               class="btn btn-primary d-block mx-auto"
+                                                                               value="Justifier" id="justifier">
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -317,7 +331,7 @@
                                 </div>
                             </div>
 
-                    </div>
+                        </div>
                     </div>
                 </div>
 

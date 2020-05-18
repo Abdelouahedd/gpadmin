@@ -1,8 +1,11 @@
 package metier.gestionnaire;
 
+import metier.beans.Document;
 import metier.beans.Rapport;
 import metier.enumeration.EtatEtape;
 import persistence.DAORapport;
+import persistence.entities.DocumentEntity;
+import persistence.entities.RapportEntity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,5 +40,10 @@ public class GestionnaireRapport {
         return daoRapport.delete(rapport.getRapportEntity());
     }
 
+    public Rapport newInstance(String fileNmae,EtatEtape decision, Integer idEtape) {
+        RapportEntity rapportEntity = new RapportEntity(fileNmae,decision, idEtape);
+        Rapport rapport = new Rapport(rapportEntity);
+        return rapport;
+    }
 
 }

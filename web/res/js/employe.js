@@ -1,10 +1,10 @@
-function updateUI (data) {
+function updateUI(data) {
     console.log(data)
     $("#proc_name").text(data["procedureNom"])
     $("#etape_name").text(data["etapeNom"])
     $("#etape_etat").text(data["etapeEtat"])
     $("#etape_id").text(data["etapeId"])
-    $("input#id").attr('value', data['etapeId'])
+    $("input#idEtape").attr('value', data['etapeId'])
     $("#etape_ouverture").text(data["etapeOuverture"])
     $("#etape_fermeture").text(data["etapeFermeture"])
     $('#rapports').empty()
@@ -25,8 +25,8 @@ function updateUI (data) {
         default:
             console.log("Pay me")
     }
-    if ( data['rapports'].length > 0 ) {
-        for (let id in data['rapports'] ) {
+    if (data['rapports'].length > 0) {
+        for (let id in data['rapports']) {
             const rapport = data['rapports'][id]['rapportEntity']
             console.warn(rapport)
             let li = $(document.createElement("li"))
@@ -57,8 +57,8 @@ function updateUI (data) {
             li.appendTo('#rapports')
         }
 
-        if ( data['documents'].length > 0 ) {
-            for (let id in data['documents'] ) {
+        if (data['documents'].length > 0) {
+            for (let id in data['documents']) {
                 const doc = data['documents'][id]['documentEntity']
                 console.warn(doc)
                 let tr = $(document.createElement('tr'))
@@ -101,12 +101,23 @@ etapesButton.on('click', function (event) {
     etapesSection.show();
 })
 
+$('#validate').on('click', (event) => {
+    $('#decision').attr('value', "TERMINE");
+})
+$('#refuse').on('click', (event) => {
+    $('#decision').attr('value', "REFUSE");
+})
+$('#reject').on('click', (event) => {
+    $('#decision').attr('value', "REJETE");
+})
+
+
 $('#etapes-sidbar nav a').on('click', function (event) {
     const idEtape = $(this).attr('id');
     $("#connection").show();
     $("#error").hide()
-    fetch("http://localhost:8080/web_war_exploded/api/etape/" + idEtape)
-        .then(response => response.json() )
+    fetch("http://localhost:8080/gpadminJEE/api/etape/" + idEtape)
+        .then(response => response.json())
         .then(data => {
             updateUI(data)
             $('#connection').hide()

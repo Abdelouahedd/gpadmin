@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 public class ApiEtape extends HttpServlet {
+
     private GestionnaireDemande gestionnaireDemande = new GestionnaireDemande();
     private GestionnaireEtape gestionnaireEtape = new GestionnaireEtape();
     private Integer idEtape;
@@ -49,10 +50,15 @@ public class ApiEtape extends HttpServlet {
         }
     }
 
+
     private void getIdParameter(HttpServletRequest req) throws Exception {
         StringBuffer url = req.getRequestURL();
         String[] params = String.valueOf(url).split("/");
         idEtape = Integer.parseInt(params[params.length - 1]);
         if (idEtape == null) throw new Exception();
     }
+
+
+
+
 }
