@@ -2,6 +2,7 @@
 <c:set scope="session" var="employe" value="${sessionScope['user']}"/>
 <c:set var="catEtapes" value="${requestScope['catEtapes']}"/>
 <c:set var="etapesMap" value="${requestScope['etapesMap']}"/>
+<c:set var="procs" value="${requestScope['procs']}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top shadow">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -416,23 +416,50 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td data-toggle="collapse" data-target="#sous-etapes">
-                                            <p class="text-primary">
-                                                Nom procedures (id)
-                                                <span class="badge badge-primary float-right">Cours</span>
-                                            </p>
-                                            <div id="sous-etapes" class="collapse">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">Etape 01 Termine le 2020-20-10
-                                                    </li>
-                                                    <li class="list-group-item">Etape 02 Termine le 2020-20-20
-                                                    </li>
-                                                    <li class="list-group-item">Etape 03 <span
-                                                            class="badge badge-warning">Courante</span></li>
-                                                    <li class="list-group-item">Etape 04</li>
-                                                </ul>
-                                            </div>
-                                        </td>
+                                        <c:choose>
+                                            <c:when test="${procs.size() > 0}">
+                                                <c:forEach var="proc" items="${procs}">
+                                                    <td data-toggle="collapse" data-target="#proc_<c:out value="${proc.getId()}" />">
+                                                        <p class="text-primary">
+                                                            <c:out value="${proc.getLibelle()}" /> (<c:out value="${proc.getId()}" />)
+                                                            <span class="badge badge-primary float-right">
+                                                                <c:out value="${proc.getEtat()}" />
+                                                            </span>
+                                                        </p>
+                                                        <div id="proc_<c:out value="${proc.getId()}"/>" class="collapse">
+                                                            <ul class="list-group">
+                                                                <c:forEach var="etape" items="${proc.getEtapes()}">
+                                                                    <c:choose>
+                                                                        <c:when test="${etape.getEtatString().equals('TERMINE')}">
+                                                                            <li class="list-group-item">
+                                                                                <c:out value="${etape.getLibelle()}" /> (<c:out value="${etape.getId()}" />)
+                                                                                <i>Ferme le: <c:out value="${etape.getDateFin()}" /></i>
+                                                                                <span class="badge badge-success float-right">Termine</span>
+                                                                            </li>
+                                                                        </c:when>
+                                                                        <c:when test="${etape.equals(proc.getEtapeCourante())}">
+                                                                            <li class="list-group-item">
+                                                                                <c:out value="${etape.getLibelle()}" /> (<c:out value="${etape.getId()}" />)
+                                                                                <i>Ouvert le: <c:out value="${etape.getDateDebut()}" /></i>
+                                                                                <span class="badge badge-warning float-right">Cours</span>
+                                                                            </li>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <li class="list-group-item bg-gray">
+                                                                                <c:out value="${etape.getLibelle()}" /> (<c:out value="${etape.getId()}" />)
+                                                                            </li>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:forEach>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><h3 class="text-danger">Aucun procedure disponible pour le moments</h3></td>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </tr>
                                     </tbody>
                                 </table>

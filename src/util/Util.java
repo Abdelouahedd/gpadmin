@@ -1,12 +1,12 @@
 package util;
 
 
+import metier.beans.Demande;
 import metier.beans.Etape;
+import metier.beans.Processus;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Util {
@@ -36,4 +36,12 @@ public class Util {
                 .collect(Collectors.toList());
     }
 
+    public static List<Processus> filterProcs(List<Demande> demandes) {
+        List<Processus> procs = new ArrayList<>();
+        demandes.forEach(demande -> {
+                    if ( demande.getProcessus() != null )
+                        procs.add(demande.getProcessus());
+                });
+        return procs;
+    }
 }

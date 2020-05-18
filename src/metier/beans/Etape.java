@@ -70,4 +70,7 @@ public class Etape {
                 getDateFin().toString(),
                 getLibelle());
     }
+    public String getEtatString() {
+        return String.valueOf(etapeEntity.getEtat());
+    }
 }

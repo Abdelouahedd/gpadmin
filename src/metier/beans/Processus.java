@@ -11,6 +11,7 @@ public class Processus {
     private ProcessusEntity processusEntity;
     private List<Etape> etapes;
     private Etape etapeCourant;
+    private String libelle;
 
     public Processus(ProcessusEntity processusEntity) {
         this.processusEntity = processusEntity;
@@ -21,6 +22,14 @@ public class Processus {
 
     public ProcessusEntity getProcessusEntity() {
         return processusEntity;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public String getLibelle() {
+        return libelle;
     }
 
     public void setProcessusEntity(ProcessusEntity processusEntity) {
@@ -73,7 +82,10 @@ public class Processus {
                 getAvancementRatio());
     }
 
-    private EtatProcessus getEtat() {
-        return processusEntity.getEtat();
+    public String getEtat() {
+        return String.valueOf(processusEntity.getEtat());
+    }
+    public Integer getId() {
+        return processusEntity.getId();
     }
 }

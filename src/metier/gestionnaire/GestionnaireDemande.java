@@ -81,6 +81,8 @@ public class GestionnaireDemande {
         CatalogueProcessus catProc = gestionnaireCatProc.getById(catId);
         List<Document> docs = gestionnaireDocument.getAllDocumentInDemande(demandeId);
         Processus proc = gestionnaireProcessus.getProByDemandeID(demandeId);
+        if ( proc != null )
+            proc.setLibelle(catProc.getLibelle());
 
         demande.setDocs(docs);
         demande.setProcessus(proc);

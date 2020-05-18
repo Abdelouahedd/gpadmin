@@ -1,9 +1,6 @@
 package servlet.chef;
 
-import metier.beans.CatalogueEtape;
-import metier.beans.ChefDivision;
-import metier.beans.Employee;
-import metier.beans.Etape;
+import metier.beans.*;
 import metier.gestionnaire.GestionnaireCatEtap;
 import util.Util;
 
@@ -18,12 +15,19 @@ import java.util.List;
 import java.util.Set;
 
 public class ChefServlet extends HttpServlet {
-    private GestionnaireCatEtap gestionnaireCatEtap = new GestionnaireCatEtap();
+    private GestionnaireCatEtap gestionnaireCatEtap;
+
+    @Override
+    public void init() throws ServletException {
+        gestionnaireCatEtap = new GestionnaireCatEtap();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         ChefDivision chef = (ChefDivision) session.getAttribute("user");
         List<CatalogueEtape> catalogueEtapes = gestionnaireCatEtap.getCatEtapeByEMP(chef);
+        List<Processus> procs = Util.filterProcs(chef.getDemandes());
 
         List<Etape> etapes = chef.getEtapes();
         if ( etapes != null ) {
@@ -35,6 +39,7 @@ public class ChefServlet extends HttpServlet {
             req.setAttribute("etapesMap", null);
         }
 
+        req.setAttribute("procs", procs);
         req.setAttribute("catEtapes", catalogueEtapes);
         this.getServletContext().getRequestDispatcher("/pages/chef.jsp").forward(req, resp);
     }
