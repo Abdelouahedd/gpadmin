@@ -93,4 +93,5 @@ public class GestionnaireUser {
     public List<CatalogueEtape> getAll(Employee employee) {
         return gestionnaireCatEtap.getCatEtapeByEMP(employee);
     }
+
 }

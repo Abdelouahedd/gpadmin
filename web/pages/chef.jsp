@@ -3,6 +3,7 @@
 <c:set var="catEtapes" value="${requestScope['catEtapes']}"/>
 <c:set var="etapesMap" value="${requestScope['etapesMap']}"/>
 <c:set var="procs" value="${requestScope['procs']}" />
+<c:set var="catalogueEtape" value="${requestScope['catalogueEtape']}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -474,22 +475,24 @@
                                     <div class="card body p-4">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text" for="inputGroupSelect01">Cat
+                                                <label class="input-group-text" for="catalogue">Cat
                                                     Etape:</label>
                                             </div>
-                                            <select class="custom-select" id="inputGroupSelect01">
+                                            <select class="custom-select" id="catalogue">
                                                 <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <c:forEach var="cat" items="${catalogueEtape}">
+                                                    <option value="<c:out value="${cat.getId()}" />">
+                                                        <c:out value="${cat.getLibelle()}" />
+                                                    </option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text"
-                                                       for="inputGroupSelect01">Employee</label>
+                                                       for="employees">Employee</label>
                                             </div>
-                                            <select class="custom-select" id="inputGroupSelect01">
+                                            <select class="custom-select" id="employees">
                                                 <option selected>Choose...</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>

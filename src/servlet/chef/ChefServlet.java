@@ -2,6 +2,7 @@ package servlet.chef;
 
 import metier.beans.*;
 import metier.gestionnaire.GestionnaireCatEtap;
+import metier.gestionnaire.GestionnaireUser;
 import util.Util;
 
 import javax.servlet.ServletException;
@@ -16,10 +17,12 @@ import java.util.Set;
 
 public class ChefServlet extends HttpServlet {
     private GestionnaireCatEtap gestionnaireCatEtap;
+    private GestionnaireUser gestionnaireUser;
 
     @Override
     public void init() throws ServletException {
         gestionnaireCatEtap = new GestionnaireCatEtap();
+        gestionnaireUser = new GestionnaireUser();
     }
 
     @Override
@@ -27,6 +30,7 @@ public class ChefServlet extends HttpServlet {
         HttpSession session = req.getSession();
         ChefDivision chef = (ChefDivision) session.getAttribute("user");
         List<CatalogueEtape> catalogueEtapes = gestionnaireCatEtap.getCatEtapeByEMP(chef);
+        List<CatalogueEtape> catalogueEtapeList = gestionnaireCatEtap.getByChef(chef.getId());
         List<Processus> procs = Util.filterProcs(chef.getDemandes());
 
         List<Etape> etapes = chef.getEtapes();
@@ -39,6 +43,7 @@ public class ChefServlet extends HttpServlet {
             req.setAttribute("etapesMap", null);
         }
 
+        req.setAttribute("catalogueEtape", catalogueEtapeList);
         req.setAttribute("procs", procs);
         req.setAttribute("catEtapes", catalogueEtapes);
         this.getServletContext().getRequestDispatcher("/pages/chef.jsp").forward(req, resp);

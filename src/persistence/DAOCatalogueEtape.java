@@ -1,6 +1,7 @@
 package persistence;
 
 import com.sun.source.tree.CompoundAssignmentTree;
+import metier.beans.CatalogueEtape;
 import persistence.entities.CatalogueEtapeEntity;
 
 import java.sql.PreparedStatement;
@@ -145,5 +146,25 @@ public class DAOCatalogueEtape implements IDAO<CatalogueEtapeEntity> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<CatalogueEtapeEntity> getByChef(Integer id) {
+        List<CatalogueEtapeEntity> catEtape = new ArrayList<>();
+        try {
+            PreparedStatement ps = cnx.prepareStatement("SELECT CATALOGUE_ETAPE.* FROM CATALOGUE_PROCESSUS JOIN CATALOGUE_ETAPE ON CATALOGUE_PROCESSUS.ID = CATALOGUE_ETAPE.ID_PROC WHERE CATALOGUE_PROCESSUS.CHEF_DEFAUT = ?");
+            ps.setInt(1, id);
+            ResultSet result = ps.executeQuery();
+            while ( result.next() )
+                catEtape.add(new CatalogueEtapeEntity(
+                        result.getInt("ID"),
+                        result.getString("LIBELLE"),
+                        result.getInt("NUM_ORDRE"),
+                        result.getInt("EMP_DEFAUT"),
+                        result.getInt("ID_PROC")
+                ));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return catEtape;
     }
 }

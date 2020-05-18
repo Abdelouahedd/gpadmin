@@ -22,5 +22,9 @@ public class CatalogueEtape {
         return this.catalogueEtapeEntity.getLibelle();
     }
 
+    public Integer getId() {
+        return catalogueEtapeEntity.getId();
+    }
+
 
 }

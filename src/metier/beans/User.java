@@ -36,4 +36,9 @@ abstract public class User {
     public String getCin(){
         return this.user.getCin();
     }
+
+
+    public Integer getId () {
+        return user.getId();
+    }
 }
