@@ -4,7 +4,7 @@ package metier.beans;
 import persistence.entities.PersonnelEntity;
 
 abstract public class User {
-    private PersonnelEntity user;
+    protected PersonnelEntity user;
 
     public User() {
     }
