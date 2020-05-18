@@ -1,6 +1,5 @@
 package persistence;
 
-import metier.beans.Demande;
 import metier.enumeration.EtatDemande;
 import persistence.entities.DemandeEntity;
 
@@ -118,10 +117,10 @@ public class DAODemande implements IDAO<DemandeEntity> {
     public List<DemandeEntity> getDemandeClient(Integer idClient) {
         try {
             List<DemandeEntity> demandes = new ArrayList<>(10);
-            PreparedStatement ps =cnx.prepareStatement("SELECT * FROM DEMANDE WHERE ID_CLIENT = ?");
+            PreparedStatement ps = cnx.prepareStatement("SELECT * FROM DEMANDE WHERE ID_CLIENT = ?");
             ps.setInt(1, idClient);
             ResultSet result = ps.executeQuery();
-            while ( result.next() )
+            while (result.next())
                 demandes.add(new DemandeEntity(
                         result.getInt("ID"),
                         result.getTimestamp("DATE_OUVERTURE"),
@@ -133,18 +132,42 @@ public class DAODemande implements IDAO<DemandeEntity> {
                         result.getInt("ID_CLIENT")
                 ));
             return demandes;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public DemandeEntity getByEtape (Integer idEtape) {
+    public List<DemandeEntity> getDemandeByChef(Integer idChef) {
+        try {
+            List<DemandeEntity> demandes = new ArrayList<>(10);
+            PreparedStatement ps = cnx.prepareStatement("SELECT * FROM DEMANDE WHERE ID_CHEF = ?");
+            ps.setInt(1, idChef);
+            ResultSet result = ps.executeQuery();
+            while (result.next())
+                demandes.add(new DemandeEntity(
+                        result.getInt("ID"),
+                        result.getTimestamp("DATE_OUVERTURE"),
+                        EtatDemande.valueOf(result.getString("ETAT")),
+                        result.getString("JETON"),
+                        result.getBoolean("ARCHIVE"),
+                        result.getInt("ID_CAT_PROC"),
+                        result.getInt("ID_CHEF"),
+                        result.getInt("ID_CLIENT")
+                ));
+            return demandes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public DemandeEntity getByEtape(Integer idEtape) {
         try {
             PreparedStatement ps = cnx.prepareStatement("SELECT DEMANDE.* FROM DEMANDE JOIN PROCESSUS ON DEMANDE.ID = PROCESSUS.ID_DEMANDE JOIN ETAPE ON ETAPE.ID_PROC = PROCESSUS.ID WHERE ETAPE.ID = ?;");
             ps.setInt(1, idEtape);
             ResultSet result = ps.executeQuery();
-            if ( result.next() ){
+            if (result.next()) {
                 return new DemandeEntity(
                         result.getInt("ID"),
                         result.getTimestamp("DATE_OUVERTURE"),
@@ -156,7 +179,7 @@ public class DAODemande implements IDAO<DemandeEntity> {
                         result.getInt("ID_CLIENT")
                 );
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

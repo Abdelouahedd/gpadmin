@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set scope="session" var="employe" value="${sessionScope['user']}"/>
 <c:set var="catEtapes" value="${requestScope['catEtapes']}"/>
-<c:set var="etapesMap" value="${requestScope['etapesMap']}" />
+<c:set var="etapesMap" value="${requestScope['etapesMap']}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,8 +73,8 @@
                      xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
                           d="M14 5H2v9a1 1 0 001 1h10a1 1 0 001-1V5zM1 4v10a2 2 0 002 2h10a2 2 0 002-2V4H1z"
-                          clip-rule="evenodd" />
-                    <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z" />
+                          clip-rule="evenodd"/>
+                    <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z"/>
                 </svg>
                 Gerer Procedure
             </button>
@@ -83,13 +83,13 @@
                      xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
                           d="M.243 6.929l.514-.858L8 10.417l7.243-4.346.514.858L8 11.583.243 6.93z"
-                          clip-rule="evenodd" />
+                          clip-rule="evenodd"/>
                     <path fill-rule="evenodd"
                           d="M7.184 10.68L.752 14.432l-.504-.864L6.68 9.816l.504.864zm1.632 0l6.432 3.752.504-.864L9.32 9.816l-.504.864z"
-                          clip-rule="evenodd" />
+                          clip-rule="evenodd"/>
                     <path fill-rule="evenodd"
                           d="M8.47 1.318a1 1 0 00-.94 0l-6 3.2A1 1 0 001 5.4V14a1 1 0 001 1h12a1 1 0 001-1V5.4a1 1 0 00-.53-.882l-6-3.2zM7.06.435a2 2 0 011.882 0l6 3.2A2 2 0 0116 5.4V14a2 2 0 01-2 2H2a2 2 0 01-2-2V5.4a2 2 0 011.059-1.765l6-3.2z"
-                          clip-rule="evenodd" />
+                          clip-rule="evenodd"/>
                 </svg>
                 Gerer demande
             </button>
@@ -142,15 +142,18 @@
                                 <c:when test="${catEtapes.size() > 0}">
                                     <div class="card-header bg-gray text-primary text-center">
                                         <div>
-                                            <span class="badge badge-primary float-right">Total: <c:out value="${catEtapes.size()}"/></span>
-                                            <p class="font-weight-bold">Le Catalogue des etapes qui vous sont affecte</p>
+                                            <span class="badge badge-primary float-right">Total: <c:out
+                                                    value="${catEtapes.size()}"/></span>
+                                            <p class="font-weight-bold">Le Catalogue des etapes qui vous sont
+                                                affecte</p>
                                             <p class="text-dark">(Basculez pour voir plus)</p>
                                         </div>
                                     </div>
                                     <div class="card-body bg-transparent p-0">
                                         <ul id="liste-etape" class="list-group bg-transparent m-0">
                                             <c:forEach items="${catEtapes}" var="catEtape">
-                                                <li class="list-group-item text-center bg-transparent"><c:out value="${catEtape.getLibelle()}"/></li>
+                                                <li class="list-group-item text-center bg-transparent"><c:out
+                                                        value="${catEtape.getLibelle()}"/></li>
                                             </c:forEach>
                                         </ul>
                                     </div>
@@ -202,9 +205,9 @@
                                                         <a href="#${entry.key}"
                                                            class="btn btn-block text-dark"
                                                            data-toggle="collapse">
-                                                            <c:out value="${entry.key}" />
+                                                            <c:out value="${entry.key}"/>
                                                             <span class="badge badge-primary">
-                                                        <c:out value="${entry.value.size()}" />
+                                                        <c:out value="${entry.value.size()}"/>
                                                     </span>
                                                         </a>
                                                         <nav id="${entry.key}" class="nav flex-column collapse"
@@ -212,7 +215,8 @@
                                                             <c:forEach var="item" items="${entry.value}">
                                                                 <a id="<c:out value='${item.getId()}' /> "
                                                                    class="btn btn-block nav-item nav-link text-dark">
-                                                                    Etape numero:  <b><c:out value="${item.getId()}" /></b>
+                                                                    Etape numero: <b><c:out
+                                                                        value="${item.getId()}"/></b>
 
                                                                 </a>
                                                             </c:forEach>
@@ -228,10 +232,12 @@
                                         <div class="fade show">
                                             <div class="row my-4">
                                                 <div class="offset-md-1 col-md-5 label-box">
-                                                    <span class="font-weight-bold label-box-key">Procedure:</span><span id="proc_name" class="label-box-value"></span>
+                                                    <span class="font-weight-bold label-box-key">Procedure:</span><span
+                                                        id="proc_name" class="label-box-value"></span>
                                                 </div>
                                                 <div class="offset-md-1 col-md-3 label-box">
-                                                    <span class="font-weight-bold label-box-key">Etape: </span><span id="etape_name" class="label-box-value"></span>
+                                                    <span class="font-weight-bold label-box-key">Etape: </span><span
+                                                        id="etape_name" class="label-box-value"></span>
                                                 </div>
                                             </div>
 
@@ -259,34 +265,48 @@
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-around">
                                                                 <button id="validate" class="btn btn-outline-success"
-                                                                        data-toggle="modal" data-target="#change-state">Valider</button>
+                                                                        data-toggle="modal" data-target="#change-state">
+                                                                    Valider
+                                                                </button>
                                                                 <button id="refuse" class="btn btn-outline-warning"
-                                                                        data-toggle="modal" data-target="#change-state">Refuser</button>
+                                                                        data-toggle="modal" data-target="#change-state">
+                                                                    Refuser
+                                                                </button>
                                                                 <button id="reject" class="btn btn-outline-danger"
-                                                                        data-toggle="modal" data-target="#change-state">Rejeter</button>
+                                                                        data-toggle="modal" data-target="#change-state">
+                                                                    Rejeter
+                                                                </button>
                                                             </div>
 
 
-                                                            <div id="change-state" class="modal fade" tabindex="-1" role="dialog">
+                                                            <div id="change-state" class="modal fade" tabindex="-1"
+                                                                 role="dialog">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title">Un Rapport</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <form action="" method="post">
-                                                                                <p class="text-primary font-weight-bold">Justifier votre decision
+                                                                                <p class="text-primary font-weight-bold">
+                                                                                    Justifier votre decision
                                                                                     par un rappot</p>
                                                                                 <label class="text-primary">
                                                                                     <input type="file"
                                                                                            class="input-control-file"
-                                                                                           name="files" multiple required>
+                                                                                           name="files" multiple
+                                                                                           required>
                                                                                 </label>
-                                                                                <input class="none" type="text" name="id">
-                                                                                <input type="submit" class="btn btn-primary d-block mx-auto" value="Justifier">
+                                                                                <input class="none" type="text"
+                                                                                       name="id">
+                                                                                <input type="submit"
+                                                                                       class="btn btn-primary d-block mx-auto"
+                                                                                       value="Justifier">
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -476,72 +496,76 @@
                         <div class="row mt-4">
                             <div class="col px-5">
                                 <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="d-flex justify-content-around align-items-center">
-                                            <p class="my-auto"><b class="text-primary">Nom de la
-                                                Demande</b>(alkjdflkjasdlfkjlaksjdf)</p>
-                                            <p class="my-auto"><b class="text-primary">Ouvert: </b> 2020-20-20></p>
-                                            <button class="btn btn-outline-success">Accepter</button>
-                                            <button class="btn btn-outline-danger">Refuser</button>
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                    data-toggle="collapse" data-target="#docs" aria-expanded="false"
-                                                    aria-controls="collapseExample">
-                                                Voir Docs
-                                            </button>
-                                        </div>
-                                        <div id="docs" class="collapse">
-                                            <hr>
-                                            <div class="d-flex justify-content-around">
-                                                <a href="#">Doc.pdf</a>
-                                                <a href="#">Doc.pdf</a>
-                                                <a href="#">Doc.pdf</a>
+                                    <c:forEach items="${employe.getDemandes()}" var="demande">
+                                        <li class="list-group-item">
+                                            <div class="d-flex justify-content-around align-items-center">
+                                                <p class="my-auto"><b class="text-primary">
+                                                    <c:out value="${demande.getLibelle()}"/></b>(<c:out value="${demande.getJeton()}"/>)</p>
+                                                <p class="my-auto"><b class="text-primary">Ouvert: </b> <c:out
+                                                        value="${demande.getDateOuverture()}"/></p>
+                                                <button class="btn btn-outline-success">Accepter</button>
+                                                <button class="btn btn-outline-danger">Refuser</button>
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                        data-toggle="collapse" data-target="#docs" aria-expanded="false"
+                                                        aria-controls="collapseExample">
+                                                    Voir Docs
+                                                </button>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="d-flex justify-content-around align-items-center">
-                                            <p class="my-auto"><b class="text-primary">Nom de la
-                                                Demande</b>(alkjdflkjasdlfkjlaksjdf)</p>
-                                            <p class="my-auto"><b class="text-primary">Ouvert: </b> 2020-20-20></p>
-                                            <button class="btn btn-outline-success">Accepter</button>
-                                            <button class="btn btn-outline-danger">Refuser</button>
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                    data-toggle="collapse" data-target="#docs" aria-expanded="false"
-                                                    aria-controls="collapseExample">
-                                                Voir Docs
-                                            </button>
-                                        </div>
-                                        <div id="docs" class="collapse">
-                                            <hr>
-                                            <div class="d-flex justify-content-around">
-                                                <a href="#">Doc.pdf</a>
-                                                <a href="#">Doc.pdf</a>
-                                                <a href="#">Doc.pdf</a>
+                                            <div id="docs" class="collapse">
+                                                <hr>
+                                                <div class="d-flex justify-content-around">
+                                                    <c:forEach items="${demande.getDocs()}" var="doc">
+                                                        <a href="#"><c:out value="${doc.getFileName()}"/></a>
+                                                    </c:forEach>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="d-flex justify-content-around align-items-center">
-                                            <p class="my-auto"><b class="text-primary">Nom de la
-                                                Demande</b>(alkjdflkjasdlfkjlaksjdf)</p>
-                                            <p class="my-auto"><b class="text-primary">Ouvert: </b> 2020-20-20></p>
-                                            <button class="btn btn-outline-success">Accepter</button>
-                                            <button class="btn btn-outline-danger">Refuser</button>
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                    data-toggle="collapse" data-target="#docs" aria-expanded="false"
-                                                    aria-controls="collapseExample">
-                                                Voir Docs
-                                            </button>
-                                        </div>
-                                        <div id="docs" class="collapse">
-                                            <hr>
-                                            <div class="d-flex justify-content-around">
-                                                <a href="#">Doc.pdf</a>
-                                                <a href="#">Doc.pdf</a>
-                                                <a href="#">Doc.pdf</a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    </c:forEach>
+
+                                    <%--                                    <li class="list-group-item">--%>
+                                    <%--                                        <div class="d-flex justify-content-around align-items-center">--%>
+                                    <%--                                            <p class="my-auto"><b class="text-primary">Nom de la--%>
+                                    <%--                                                Demande</b>(alkjdflkjasdlfkjlaksjdf)</p>--%>
+                                    <%--                                            <p class="my-auto"><b class="text-primary">Ouvert: </b> 2020-20-20></p>--%>
+                                    <%--                                            <button class="btn btn-outline-success">Accepter</button>--%>
+                                    <%--                                            <button class="btn btn-outline-danger">Refuser</button>--%>
+                                    <%--                                            <button class="btn btn-outline-secondary" type="button"--%>
+                                    <%--                                                    data-toggle="collapse" data-target="#docs" aria-expanded="false"--%>
+                                    <%--                                                    aria-controls="collapseExample">--%>
+                                    <%--                                                Voir Docs--%>
+                                    <%--                                            </button>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                        <div id="docs" class="collapse">--%>
+                                    <%--                                            <hr>--%>
+                                    <%--                                            <div class="d-flex justify-content-around">--%>
+                                    <%--                                                <a href="#">Doc.pdf</a>--%>
+                                    <%--                                                <a href="#">Doc.pdf</a>--%>
+                                    <%--                                                <a href="#">Doc.pdf</a>--%>
+                                    <%--                                            </div>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </li>--%>
+                                    <%--                                    <li class="list-group-item">--%>
+                                    <%--                                        <div class="d-flex justify-content-around align-items-center">--%>
+                                    <%--                                            <p class="my-auto"><b class="text-primary">Nom de la--%>
+                                    <%--                                                Demande</b>(alkjdflkjasdlfkjlaksjdf)</p>--%>
+                                    <%--                                            <p class="my-auto"><b class="text-primary">Ouvert: </b> 2020-20-20></p>--%>
+                                    <%--                                            <button class="btn btn-outline-success">Accepter</button>--%>
+                                    <%--                                            <button class="btn btn-outline-danger">Refuser</button>--%>
+                                    <%--                                            <button class="btn btn-outline-secondary" type="button"--%>
+                                    <%--                                                    data-toggle="collapse" data-target="#docs" aria-expanded="false"--%>
+                                    <%--                                                    aria-controls="collapseExample">--%>
+                                    <%--                                                Voir Docs--%>
+                                    <%--                                            </button>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                        <div id="docs" class="collapse">--%>
+                                    <%--                                            <hr>--%>
+                                    <%--                                            <div class="d-flex justify-content-around">--%>
+                                    <%--                                                <a href="#">Doc.pdf</a>--%>
+                                    <%--                                                <a href="#">Doc.pdf</a>--%>
+                                    <%--                                                <a href="#">Doc.pdf</a>--%>
+                                    <%--                                            </div>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </li>--%>
 
                                 </ul>
                             </div>

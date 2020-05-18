@@ -57,8 +57,8 @@ public class GestionnaireDemande {
 
 
     public List<Demande> getDemandeChef(Integer idChef) {
-        return daoDemande.getDemandeClient(idChef).stream().
-                map(Demande::new).
+        return daoDemande.getDemandeByChef(idChef).stream().
+                map(this::construct).
                 collect(Collectors.toList());
     }
 
