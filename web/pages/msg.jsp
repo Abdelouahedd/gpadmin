@@ -7,7 +7,8 @@
     <jsp:param name="title" value="Message"/>
 </jsp:include>
 <body>
-    <c:when test='${typeMessage == "success"}'>
+<c:choose>
+    <c:when test='${typeMessage.equals("success")}'>
         <div class="container-fluid bg-success text-light center">
             <div class="jumbotron bg-success text-center text-light">
                 <h1>Succes</h1>
@@ -28,6 +29,7 @@
             </div>
         </div>
     </c:otherwise>
+</c:choose>
 
     <jsp:include page="../WEB-INF/views/inc/footer.jsp" />
 </body>

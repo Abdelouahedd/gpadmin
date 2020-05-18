@@ -64,10 +64,10 @@ public class CreateDemande extends HttpServlet {
                 gestionnaireDocument.save(document);
                 //response
                 message = "Votre ID de cette demande est : \n" + jeton;
-                showMessage(req, resp, "success", message, "/pages/succesResponse.jsp");
+                showMessage(req, resp, "success", message, "/pages/msg.jsp");
             } else {
                 message = "Un erreur a etait generer lors de creation du demande ,essaie une autre fois";
-                showMessage(req, resp, "success", message, "/pages/succesResponse.jsp");
+                showMessage(req, resp, "erreur", message, "/pages/msg.jsp");
             }
         }
     }
