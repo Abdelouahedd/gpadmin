@@ -534,23 +534,23 @@
                             <div class="col px-5">
                                 <ul class="list-group">
                                     <c:forEach items="${employe.getDemandes()}" var="demande">
-                                        <li class="list-group-item">
+                                        <li id="<c:out value="${demande.getJeton()}" />" class="list-group-item">
                                             <div class="d-flex justify-content-around align-items-center">
                                                 <p class="my-auto"><b class="text-primary">
                                                     <c:out value="${demande.getLibelle()}"/></b>(<c:out value="${demande.getJeton()}"/>)</p>
                                                 <p class="my-auto"><b class="text-primary">Ouvert: </b> <c:out
                                                         value="${demande.getDateOuverture()}"/></p>
-                                                <button class="btn btn-outline-success">Accepter</button>
-                                                <button class="btn btn-outline-danger">Refuser</button>
+                                                <button class="accepter btn btn-outline-success">Accepter</button>
+                                                <button class="refuser btn btn-outline-danger">Refuser</button>
                                                 <button class="btn btn-outline-secondary" type="button"
                                                         data-toggle="collapse"
-                                                        data-target="<c:out value="#${demande.getJeton()}" />"
+                                                        data-target="<c:out value="#docs${demande.getJeton()}" />"
                                                         aria-expanded="false"
                                                         aria-controls="collapseExample">
                                                     Voir Docs
                                                 </button>
                                             </div>
-                                            <div id="<c:out value="${demande.getJeton()}" />" class="collapse">
+                                            <div id="<c:out value="docs${demande.getJeton()}" />" class="collapse">
                                                 <hr>
                                                 <div class="d-flex justify-content-around">
                                                     <c:forEach items="${demande.getDocs()}" var="doc">
@@ -626,9 +626,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>

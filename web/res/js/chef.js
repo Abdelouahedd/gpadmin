@@ -166,6 +166,11 @@ $('#etapes-sidbar nav a').on('click', function (event) {
         })
 })
 
+$('button.accepter, button.refuser').on('click', function (event) {
+    console.log($(event.target));
+    $(event.target).closest('li').fadeOut();
+})
+
 $('#assignment button.btn').on('click', function (event) {
     console.log("Assigner button is clicked");
     let idEtape = $('#assignment #catalogue').val();
