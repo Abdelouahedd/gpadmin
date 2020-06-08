@@ -42,7 +42,7 @@ public class ApiCatEtape extends HttpServlet {
         Gson jsonBuilder = new Gson();
         String json;
 
-        if ( catalogueEtapes == null ) {
+        if ( catalogueEtapes != null ) {
             List<CatalogueEtapeEntity> entities = catalogueEtapes.stream()
                     .map(CatalogueEtape::getCatalogueEtapeEntity)
                     .collect(Collectors.toList());

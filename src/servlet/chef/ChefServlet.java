@@ -3,6 +3,7 @@ package servlet.chef;
 import metier.beans.*;
 import metier.gestionnaire.GestionnaireCatEtap;
 import metier.gestionnaire.GestionnaireUser;
+import persistence.entities.PersonnelEntity;
 import util.Util;
 
 import javax.servlet.ServletException;
@@ -32,6 +33,7 @@ public class ChefServlet extends HttpServlet {
         List<CatalogueEtape> catalogueEtapes = gestionnaireCatEtap.getCatEtapeByEMP(chef);
         List<CatalogueEtape> catalogueEtapeList = gestionnaireCatEtap.getByChef(chef.getId());
         List<Processus> procs = Util.filterProcs(chef.getDemandes());
+        List<PersonnelEntity> employeeList = gestionnaireUser.getAllEmployeeEntities();
 
         List<Etape> etapes = chef.getEtapes();
         if ( etapes != null ) {
@@ -43,6 +45,7 @@ public class ChefServlet extends HttpServlet {
             req.setAttribute("etapesMap", null);
         }
 
+        req.setAttribute("employees", employeeList);
         req.setAttribute("catalogueEtape", catalogueEtapeList);
         req.setAttribute("procs", procs);
         req.setAttribute("catEtapes", catalogueEtapes);

@@ -37,6 +37,10 @@ public class GestionnaireUser {
         return personnel.getAll().stream().map(Entityuser -> mapUser(Entityuser)).collect(Collectors.toList());
     }
 
+    public List<PersonnelEntity> getAllEmployeeEntities() {
+        return personnel.getAllEmployee();
+    }
+
     public Boolean update(User user) {
         return personnel.update(user.getUser());
     }

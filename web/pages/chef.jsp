@@ -4,6 +4,7 @@
 <c:set var="etapesMap" value="${requestScope['etapesMap']}"/>
 <c:set var="procs" value="${requestScope['procs']}" />
 <c:set var="catalogueEtape" value="${requestScope['catalogueEtape']}" />
+<c:set var="employees" value="${requestScope['employees']}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -494,6 +495,11 @@
                                             </div>
                                             <select class="custom-select" id="employees">
                                                 <option selected>Choose...</option>
+                                                <c:forEach var="emp" items="${employees}" >
+                                                    <option value="<c:out value="${emp.getId()}" />">
+                                                        <c:out value="${emp.getNom()}" />
+                                                    </option>
+                                                </c:forEach>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
