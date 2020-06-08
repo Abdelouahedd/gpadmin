@@ -102,6 +102,15 @@
         <servlet-name>apiassignmentetape</servlet-name>
         <url-pattern>/api/assignment</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>apidemandevalidation</servlet-name>
+        <servlet-class>servlet.api.ApiDemandeValidation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>apidemandevalidation</servlet-name>
+        <url-pattern>/api/demande/validation</url-pattern>
+    </servlet-mapping>
     <!--  Filter  -->
     <filter>
         <filter-name>SessionInterceptor</filter-name>

@@ -102,6 +102,18 @@ function updateAssignmentUI(json) {
     }
 
 }
+
+function updateValidationUI(json) {
+    if (json.status) {
+        $('#validation-msg').removeClass('text-danger')
+        $('#validation-msg').addClass('text-success')
+        $('#validation-msg').text(json.msg);
+    } else {
+        $('#validation-msg').addClass('text-danger');
+        $('#validation-msg').removeClass('text-success');
+        $('#validation-msg').text(json.msg);
+    }
+}
 profileSection = $("#profile-section")
 etapesSection = $("#etapes-section")
 proceduresSection = $("#procedures-section")
@@ -166,11 +178,34 @@ $('#etapes-sidbar nav a').on('click', function (event) {
         })
 })
 
-$('button.accepter, button.refuser').on('click', function (event) {
-    console.log($(event.target));
-    $(event.target).closest('li').fadeOut();
+$('button.accepter').on('click', function (event) {
+    const jeton = $(event.target).closest('li').attr('id');
+    fetch(`http://localhost:8080/web_war_exploded/api/demande/validation?jeton=${jeton}&decision=accepte`)
+        .then(response => response.json())
+        .then(data => {
+            if ( data.status ) {
+                $(event.target).closest('li').fadeOut();
+            }
+            updateValidationUI(data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
 })
-
+$('button.refuser').on('click', function (event) {
+    const jeton = $(event.target).closest('li').attr('id');
+    fetch(`http://localhost:8080/web_war_exploded/api/demande/validation?jeton=${jeton}&decision=refuse`)
+        .then(response => response.json())
+        .then(data => {
+            if ( data.status ) {
+                $(event.target).closest('li').fadeOut();
+            }
+            updateValidationUI(data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
+})
 $('#assignment button.btn').on('click', function (event) {
     console.log("Assigner button is clicked");
     let idEtape = $('#assignment #catalogue').val();

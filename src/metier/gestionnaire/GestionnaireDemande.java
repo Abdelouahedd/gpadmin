@@ -97,4 +97,8 @@ public class GestionnaireDemande {
         demande.setDemandeEntity(demandeEntity);
         return demande;
     }
+
+    public Demande getByJeton(String jeton) {
+        return construct(daoDemande.getByJeton(jeton));
+    }
 }

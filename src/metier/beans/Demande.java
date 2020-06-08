@@ -73,4 +73,8 @@ public class Demande {
                 getLibelle(),
                 docs != null ? docs.size() : 0);
     }
+
+    public void setEtat(EtatDemande etat) {
+        demandeEntity.setEtat(etat);
+    }
 }

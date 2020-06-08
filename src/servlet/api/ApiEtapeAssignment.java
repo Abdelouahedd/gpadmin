@@ -47,16 +47,6 @@ public class ApiEtapeAssignment extends HttpServlet {
         doPost(req, resp);
     }
 
-    private Integer filterEtapeId(StringBuffer url) {
-        String URL = url.toString();
-        String[] splitted = URL.split("/");
-        return Integer.parseInt(splitted[splitted.length - 2]);
-    }
-    private Integer filterEmpId(StringBuffer url) {
-        String URL = url.toString();
-        String[] splitted = URL.split("/");
-        return Integer.parseInt(splitted[splitted.length - 1]);
-    }
     private String constructJsonResponse(Boolean response, String msg) {
         Gson jsonBuilder = new Gson();
         JsonErrorModel jsonModel = new JsonErrorModel(response, msg);
