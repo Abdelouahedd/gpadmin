@@ -456,13 +456,13 @@
                                                             </ul>
                                                         </div>
                                                     </td>
+                                    </tr>
                                                 </c:forEach>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><h3 class="text-danger">Aucun procedure disponible pour le moments</h3></td>
                                             </c:otherwise>
                                         </c:choose>
-                                    </tr>
                                     </tbody>
                                 </table>
 

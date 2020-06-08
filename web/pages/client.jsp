@@ -79,10 +79,13 @@
                                         <p class="text-danger"><span class="badge badge-warning">Avertissement</span>
                                             Le Deroulement de votre processus est bloque, veuillez ajouter les documents necessaire.
                                         </p>
-                                        <form action="UploadFile" method="post">
-                                            <div class="form-group">
-                                                <input type="file" class="form-control" name="files" multiple>
+                                        <form action="uploadfile" method="post" enctype='multipart/form-data'>
+                                            <div class="form-group d-inline-block">
+                                                <input type="text" class="d-none" name="jeton" value="<c:out value="${demande.getJeton()}" />">
+                                                <label for="uploadfile">Uploader une fichier</label>
+                                                <input type="file" class="form-control-file" id="uploadfile">
                                             </div>
+                                            <input type="submit" value="upload" class="btn btn-outline-dark px-4">
                                         </form>
                                     </c:otherwise>
                                 </c:choose>

@@ -111,6 +111,15 @@
         <servlet-name>apidemandevalidation</servlet-name>
         <url-pattern>/api/demande/validation</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>apidemandeuploadfile</servlet-name>
+        <servlet-class>servlet.api.ApiDemandeFileUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>apidemandeuploadfile</servlet-name>
+        <url-pattern>/uploadfile</url-pattern>
+    </servlet-mapping>
     <!--  Filter  -->
     <filter>
         <filter-name>SessionInterceptor</filter-name>

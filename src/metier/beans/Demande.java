@@ -77,4 +77,8 @@ public class Demande {
     public void setEtat(EtatDemande etat) {
         demandeEntity.setEtat(etat);
     }
+
+    public Integer getId() {
+        return demandeEntity.getId();
+    }
 }
