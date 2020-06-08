@@ -17,7 +17,7 @@ import java.io.*;
 
 @MultipartConfig
 public class JustifierRapport extends HttpServlet {
-    private final String path = "/home/ae/Desktop/rapport/";
+    private final String path = "/tmp/";
     private GestionnaireRapport gestionnaireRapport = new GestionnaireRapport();
     private GestionnaireEtape gestionnaireEtape = new GestionnaireEtape();
 
@@ -32,6 +32,9 @@ public class JustifierRapport extends HttpServlet {
         if (req.getPart("files").getSize() > (1024 * 1024 * 100)) {
             showMessage(req, resp, "danger", "Max Size of File 100M", "/pages/msg.jsp");
         } else {
+            Etape etape = gestionnaireEtape.getById(idEtape);
+            etape.getEtapeEntity().setEtat(decision);
+            gestionnaireEtape.update(etape);
             file = upload(req.getPart("files"), req);
             Rapport rapport = gestionnaireRapport.newInstance(file, decision, idEtape);
             if (gestionnaireRapport.save(rapport) != null) {

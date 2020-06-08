@@ -1,14 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set scope="session" var="employe" value="${sessionScope['user']}"/>
 <c:set var="catEtapes" value="${requestScope['catEtapes']}"/>
-
 <c:set var="etapesMap" value="${requestScope['etapesMap']}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employe</title>
+    <title><c:out value="${employe.getFullName()}" /></title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -261,9 +260,9 @@
                                                                                    class="input-control-file"
                                                                                    name="files" id="filess" multiple required>
                                                                         </label>
-                                                                        <input class="none" type="text" name="id" id="idEtape">
+                                                                        <input class="d-none" type="text" name="id" id="idEtape">
                                                                         <input id="decision" name="decision"
-                                                                               class="none" >
+                                                                               class="d-none" >
                                                                         <input type="submit"
                                                                                class="btn btn-primary d-block mx-auto"
                                                                                value="Justifier" id="justifier">
