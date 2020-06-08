@@ -536,7 +536,7 @@
                         <div class="row mt-4">
                             <div class="col px-5">
                                 <ul class="list-group">
-                                    <c:forEach items="${employe.getDemandes()}" var="demande">
+                                    <c:forEach items="${employe.getDemandeEnAttente()}" var="demande">
                                         <li id="<c:out value="${demande.getJeton()}" />" class="list-group-item">
                                             <div class="d-flex justify-content-around align-items-center">
                                                 <p class="my-auto"><b class="text-primary">
