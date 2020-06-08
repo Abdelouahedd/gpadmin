@@ -543,12 +543,14 @@
                                                 <button class="btn btn-outline-success">Accepter</button>
                                                 <button class="btn btn-outline-danger">Refuser</button>
                                                 <button class="btn btn-outline-secondary" type="button"
-                                                        data-toggle="collapse" data-target="#docs" aria-expanded="false"
+                                                        data-toggle="collapse"
+                                                        data-target="<c:out value="#${demande.getJeton()}" />"
+                                                        aria-expanded="false"
                                                         aria-controls="collapseExample">
                                                     Voir Docs
                                                 </button>
                                             </div>
-                                            <div id="docs" class="collapse">
+                                            <div id="<c:out value="${demande.getJeton()}" />" class="collapse">
                                                 <hr>
                                                 <div class="d-flex justify-content-around">
                                                     <c:forEach items="${demande.getDocs()}" var="doc">
