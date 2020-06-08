@@ -85,7 +85,8 @@ public class DAOCatalogueEtape implements IDAO<CatalogueEtapeEntity> {
             ps.setString(1, obj.getLibelle());
             ps.setInt(2, obj.getNumOrdre());
             ps.setInt(3, obj.getEmpDefaut());
-            ps.setInt(4, obj.getId());
+            ps.setInt(4, obj.getIdProc());
+            ps.setInt(5, obj.getId());
             return ps.executeUpdate() != 0;
         } catch (SQLException e) {
             e.printStackTrace();

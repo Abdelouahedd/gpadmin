@@ -473,14 +473,15 @@
                                         <p>Choisissez une etapes parmi les etapes qui appartient a l'une de vos
                                             procedures et l'affecter a un employee</p>
                                     </div>
-                                    <div class="card body p-4">
+                                    <div id="assignment" class="card body p-4">
+                                        <span id="msg" class="text-center"></span>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text" for="catalogue">Cat
                                                     Etape:</label>
                                             </div>
                                             <select class="custom-select" id="catalogue">
-                                                <option selected>Choose...</option>
+                                                <option value="0" selected>Choose...</option>
                                                 <c:forEach var="cat" items="${catalogueEtape}">
                                                     <option value="<c:out value="${cat.getId()}" />">
                                                         <c:out value="${cat.getLibelle()}" />
@@ -494,7 +495,7 @@
                                                        for="employees">Employee</label>
                                             </div>
                                             <select class="custom-select" id="employees">
-                                                <option selected>Choose...</option>
+                                                <option value="0" selected>Choose...</option>
                                                 <c:forEach var="emp" items="${employees}" >
                                                     <option value="<c:out value="${emp.getId()}" />">
                                                         <c:out value="${emp.getNom()}" />

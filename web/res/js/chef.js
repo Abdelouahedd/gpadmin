@@ -78,6 +78,30 @@ function updateUI (data) {
 
 }
 
+function registerAssignment(idEtape, idEmp) {
+    console.log("Fetching ....");
+    fetch(`http://localhost:8080/web_war_exploded/api/assignment?etape=${idEtape}&emp=${idEmp}`)
+    .then(response => response.json())
+    .then(json => {
+        updateAssignmentUI(json);
+    }).catch(error => {
+        console.log("Failed to register assignemnt");
+        console.log(error);
+    })
+}
+
+function updateAssignmentUI(json) {
+    if (json.status) {
+        $('#assignment #msg').removeClass('text-danger')
+        $('#assignment #msg').addClass('text-success')
+        $('#assignment #msg').text(json.msg);
+    } else {
+        $('#assignment #msg').addClass('text-danger');
+        $('#assignment #msg').removeClass('text-success');
+        $('#assignment #msg').text(json.msg);
+    }
+
+}
 profileSection = $("#profile-section")
 etapesSection = $("#etapes-section")
 proceduresSection = $("#procedures-section")
@@ -140,4 +164,17 @@ $('#etapes-sidbar nav a').on('click', function (event) {
             $('#error').show()
             $("#etape-content").hide()
         })
+})
+
+$('#assignment button.btn').on('click', function (event) {
+    console.log("Assigner button is clicked");
+    let idEtape = $('#assignment #catalogue').val();
+    let idEmp = $('#assignment #employees').val();
+    if ( idEmp != 0 && idEtape != 0 )
+        registerAssignment(idEtape, idEmp);
+    else
+        updateAssignmentUI({
+            status: false,
+            msg: "Choix Invalid"
+        });
 })

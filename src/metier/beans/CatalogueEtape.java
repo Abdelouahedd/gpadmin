@@ -29,4 +29,7 @@ public class CatalogueEtape {
         return catalogueEtapeEntity.getId();
     }
 
+    public void setDefaultEmp(Integer empId) {
+        catalogueEtapeEntity.setEmpDefaut(empId);
+    }
 }

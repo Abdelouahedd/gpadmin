@@ -93,6 +93,15 @@
         <servlet-name>ApiCatEtape</servlet-name>
         <url-pattern>/api/catalogueetape/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>apiassignmentetape</servlet-name>
+        <servlet-class>servlet.api.ApiEtapeAssignment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>apiassignmentetape</servlet-name>
+        <url-pattern>/api/assignment</url-pattern>
+    </servlet-mapping>
     <!--  Filter  -->
     <filter>
         <filter-name>SessionInterceptor</filter-name>
