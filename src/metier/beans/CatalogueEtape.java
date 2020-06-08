@@ -9,6 +9,9 @@ public class CatalogueEtape {
         this.catalogueEtapeEntity = catalogueEtapeEntity;
     }
 
+    public CatalogueEtapeEntity getEntity () {
+        return catalogueEtapeEntity;
+    }
 
     public CatalogueEtapeEntity getCatalogueEtapeEntity() {
         return catalogueEtapeEntity;
@@ -25,6 +28,5 @@ public class CatalogueEtape {
     public Integer getId() {
         return catalogueEtapeEntity.getId();
     }
-
 
 }

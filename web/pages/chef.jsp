@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="d-flex justify-content-around">
                                     <span class="text-center font-weight-bold">Poste</span>
-                                    <span class="text-center">Employee</span>
+                                    <span class="text-center">Chef</span>
                                 </div>
                             </div>
                         </div>

@@ -84,6 +84,15 @@
         <servlet-name>JustifierRapport</servlet-name>
         <url-pattern>/JustifierRapport</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ApiCatEtape</servlet-name>
+        <servlet-class>servlet.api.ApiCatEtape</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApiCatEtape</servlet-name>
+        <url-pattern>/api/catalogueetape/*</url-pattern>
+    </servlet-mapping>
     <!--  Filter  -->
     <filter>
         <filter-name>SessionInterceptor</filter-name>

@@ -17,9 +17,9 @@ public class DBConnection {
 
         try  {
 
-            String url = "jdbc:mysql://161.35.102.47:3306/GPA";
+            String url = "jdbc:mysql://localhost:3306/GPA";
             String username = "khalil";
-            String password = "GPAdmin19@/";
+            String password = "Helloworld%123";
 
             Class.forName(JDBC_DRIVER);
             System.out.println("bonjour 2");

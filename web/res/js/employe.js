@@ -116,7 +116,7 @@ $('#etapes-sidbar nav a').on('click', function (event) {
     const idEtape = $(this).attr('id');
     $("#connection").show();
     $("#error").hide()
-    fetch("http://localhost:8080/gpadminJEE/api/etape/" + idEtape)
+    fetch("http://localhost:8080/web_war_exploded/api/etape/" + idEtape)
         .then(response => response.json())
         .then(data => {
             updateUI(data)
